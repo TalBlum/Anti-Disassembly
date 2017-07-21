@@ -1,3 +1,11 @@
+; Tal Blum (blum.tal2@gmail.com)
+;
+; This program defeats flow-oriented disassemblers.
+; It uses 'coditional' jump which is actually always True (jb after stc)
+; Followed by a rogue byte which causes IDA to analyze it (0xE8 = call)
+; And fails to analyze the 'jmp Message' that follows.
+;
+
 .386 
 .model flat,stdcall 
 option casemap:none 
@@ -19,10 +27,10 @@ MsgBoxTextFake       db "?",0
 
 start:
 stc
-jc Fake
+jb Real_Code
 db 0E8h
 
-Fake:
+Real_Code:
 jmp Message
 invoke MessageBox, NULL, addr MsgBoxTextFake, addr MsgBoxCaptionFake, MB_OK 
 invoke ExitProcess, 0
