@@ -1,3 +1,8 @@
+; Tal Blum (blum.tal2@gmail.com)
+;
+; This code is using a combination of push and ret instead of using a jmp.
+;
+
 .386 
 .model flat,stdcall 
 option casemap:none 
