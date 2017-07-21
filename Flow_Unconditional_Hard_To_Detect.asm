@@ -1,3 +1,10 @@
+; Tal Blum (blum.tal2@gmail.com)
+;
+; This method is similar to Flow_Uncoditional
+; Only that this example uses an always True statement
+; That is harder to detect and is not universally True.
+;
+
 .386 
 .model flat,stdcall 
 option casemap:none 
@@ -21,10 +28,10 @@ start:
 mov esi, OFFSET MsgBoxCaption
 mov al, "H"
 cmp BYTE PTR [esi], al
-jz Fake
+jz Real_Code
 db 0E8h
 
-Fake:
+Real_Code:
 jmp Message
 invoke MessageBox, NULL, addr MsgBoxTextFake, addr MsgBoxCaptionFake, MB_OK 
 invoke ExitProcess, 0
