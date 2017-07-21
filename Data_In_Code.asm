@@ -1,3 +1,9 @@
+; Tal Blum (blum.tal2@gmail.com)
+;
+; This program has data inside code section.
+; This method will defeat linear disassemblers.
+;
+
 .386 
 .model flat,stdcall 
 option casemap:none 
