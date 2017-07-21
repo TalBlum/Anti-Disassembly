@@ -1,3 +1,12 @@
+; Tal Blum (blum.tal2@gmail.com)
+;
+; The jz in this code is not conditional and will always jump.
+; This code is jumping into itself causing the execution of the operand
+; At xor al, 0xEB, which is also an opcode for "jmp". and it jumps 0x24 bytes forward
+; to Message. 0x24 is also the opcode "and, al" which is executed at the beginning of the program.
+; Therefore it will always jump to Message and never to Fake, and will be very hard to detect.
+;
+
 .386 
 .model flat,stdcall 
 option casemap:none 
@@ -23,11 +32,10 @@ and al, 0
 xor eax, eax
 nop
 nop
-jz $-7
-db 0E8h
+nop
+jz $-8
 
 Fake:
-jmp Message
 invoke MessageBox, NULL, addr MsgBoxTextFake, addr MsgBoxCaptionFake, MB_OK 
 invoke ExitProcess, 0
 
