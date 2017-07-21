@@ -36,8 +36,6 @@ invoke MessageBox, NULL, addr MsgBoxTextFake, addr MsgBoxCaptionFake, MB_OK
 ret
 Bad ENDP
 
-
-
 Good PROC
 invoke MessageBox, NULL, addr MsgBoxText, addr MsgBoxCaption, MB_OK 
 ret
@@ -46,7 +44,5 @@ Good ENDP
 table:
 dd OFFSET Bad
 dd OFFSET Good
-
-
 
 end start
