@@ -1,3 +1,11 @@
+; Tal Blum (blum.tal2@gmail.com)
+;
+; This program changes the return address in the stack.
+; So instead of returning to the next instruction in the caller function and showing
+; The "goodbye" message, when the "ret" instruction is executed it "returns" 0x18 bytes forward - 
+; To the good code.
+;
+
 .386 
 .model flat,stdcall 
 option casemap:none 
@@ -26,8 +34,6 @@ Bad PROC
 add BYTE PTR [esp], 018h
 ret
 Bad ENDP
-
-
 
 Good PROC
 invoke MessageBox, NULL, addr MsgBoxText, addr MsgBoxCaption, MB_OK 
