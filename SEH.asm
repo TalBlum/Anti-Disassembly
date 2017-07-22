@@ -1,3 +1,10 @@
+; Tal Blum (blum.tal2@gmail.com)
+;
+; This code changes the SEH and sets its first function to "Good", so when an execption
+; Will occur it will first be handled by the function "Good".
+; It then divides by zero and cause an exception - and the execution of "Good" - in a very hard to detect technique.
+;
+
 .386 
 .model flat,stdcall 
 option casemap:none 
@@ -22,6 +29,7 @@ ASSUME FS:NOTHING
 start:
 
 Bad PROC
+
 mov eax, offset Bad
 add eax, 22h
 push eax
@@ -33,8 +41,6 @@ push 0
 call ExitProcess
 
 Bad ENDP
-
-
 
 Good PROC
 push 0
